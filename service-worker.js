@@ -1,8 +1,7 @@
 var dataCacheName = 'garagesData-v1';
 var cacheName = 'garagesPWA-final-1';
 var filesToCache = [
-    '/',
-    '/index.html'
+    '/pushNotificationsPWAPoC/index.html'
 ];
 
 self.addEventListener('install', function(e) {

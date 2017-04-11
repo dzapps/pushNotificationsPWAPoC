@@ -81,22 +81,21 @@ self.addEventListener('fetch', function(e) {
         console.dir(e.request);
         e.respondWith(
             caches.match(e.request).then(function(response) {
+                if (response)
+                    console.log("[Service Worker] Response returned from cache...");
+                return response | fetch(e.request);
 
-
-                if (response) {
+                /*if (response) {
                     console.log("[Service Worker] fetch result from cache: ");
                     console.dir(response);
                     return response;
                 } else {
                     console.log("[Service Worker] Doing fresh fetch...: ");
                     var res = fetch(e.request);
-                    res.then(resp => {
-                        console.log("[Service Worker] fresh fetch result: ");
-                        console.dir(resp);
-                        return resp;
-                    });
-
-                }
+                    console.log("[Service Worker] fresh fetch result: ");
+                    console.dir(res);
+                    return res;
+                }*/
                 //return response || fetch(e.request);
             })
         );

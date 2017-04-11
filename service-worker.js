@@ -76,9 +76,11 @@ self.addEventListener('fetch', function(e) {
          * "Cache, falling back to the network" offline strategy:
          * https://jakearchibald.com/2014/offline-cookbook/#cache-falling-back-to-network
          */
+        console.log(e.request.url);
+        console.dir(e.request);
         e.respondWith(
             caches.match(e.request).then(function(response) {
-                console.log("[Service Worker] fetch result from cache: " + response);
+                console.log("[Service Worker] fetch result from cache: " + JSON.stringify(response));
                 return response || fetch(e.request);
             })
         );

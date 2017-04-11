@@ -10,7 +10,9 @@ var filesToCache = [
     '/pushNotificationsPWAPoC/assets/icon/favicon.ico',
     '/pushNotificationsPWAPoC/assets/fonts/ionicons.ttf?v=3.0.0-alpha.3',
     '/pushNotificationsPWAPoC/assets/fonts/ionicons.woff?v=3.0.0-alpha.3',
+    '/pushNotificationsPWAPoC/assets/fonts/ionicons.woff2?v=3.0.0-alpha.3',
     'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700'
+
 ];
 
 self.addEventListener('install', function(e) {

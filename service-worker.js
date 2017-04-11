@@ -1,6 +1,7 @@
 var dataCacheName = 'garagesData-v1';
 var cacheName = 'garagesPWA-final-1';
 var filesToCache = [
+    '/pushNotificationsPWAPoC/',
     '/pushNotificationsPWAPoC/index.html'
 ];
 
@@ -93,6 +94,6 @@ self.addEventListener('notificationclick', function(event) {
     event.notification.close();
 
     event.waitUntil(
-        clients.openWindow('http://192.168.1.38:8100')
+        clients.openWindow('https://txirinedu.github.io/pushNotificationsPWAPoC/')
     );
 });

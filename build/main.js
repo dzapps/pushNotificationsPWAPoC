@@ -20799,10 +20799,9 @@ var WebPush = (function () {
     };
     WebPush = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Platform */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Platform */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__push_service__["a" /* PushService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__push_service__["a" /* PushService */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__push_service__["a" /* PushService */]])
     ], WebPush);
     return WebPush;
-    var _a, _b;
 }());
 //# sourceMappingURL=web-push-notifications.js.map
 
@@ -47759,10 +47758,10 @@ var GoogleMaps = (function () {
                     var script = document.createElement("script");
                     script.id = "googleMaps";
                     if (_this.apiKey) {
-                        script.src = 'http://maps.google.com/maps/api/js?key=' + _this.apiKey + '&callback=mapInit';
+                        script.src = 'https://maps.google.com/maps/api/js?key=' + _this.apiKey + '&callback=mapInit';
                     }
                     else {
-                        script.src = 'http://maps.google.com/maps/api/js?callback=mapInit';
+                        script.src = 'https://maps.google.com/maps/api/js?callback=mapInit';
                     }
                     document.body.appendChild(script);
                 }
@@ -93338,3 +93337,5 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dyna
 /***/ })
 /******/ ]);
 //# sourceMappingURL=main.js.map
+
+(function(w){var i=w.Ionic=w.Ionic||{};i.version='^2.0.0-rc.3';i.angular='2.1.1';i.ionicNative='^2.2.3';})(window);

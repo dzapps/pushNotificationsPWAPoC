@@ -83,7 +83,6 @@ self.addEventListener('fetch', function(e) {
             caches.match(e.request).then(function(response) {
                 if (response)
                     console.log("[Service Worker] Response returned from cache...");
-                return response | fetch(e.request);
 
                 /*if (response) {
                     console.log("[Service Worker] fetch result from cache: ");
@@ -96,7 +95,7 @@ self.addEventListener('fetch', function(e) {
                     console.dir(res);
                     return res;
                 }*/
-                //return response || fetch(e.request);
+                return response || fetch(e.request);
             })
         );
     }

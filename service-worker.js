@@ -53,7 +53,7 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
     console.log('[Service Worker] Fetch', e.request.url);
-    var dataUrl = 'https://localhost:8000/api/';
+    var dataUrl = 'maps.google.com';
     if (e.request.url.indexOf(dataUrl) > -1) {
         /*
          * When the request URL contains dataUrl, the app is asking for fresh
@@ -65,7 +65,7 @@ self.addEventListener('fetch', function(e) {
         e.respondWith(
             caches.open(dataCacheName).then(function(cache) {
                 return fetch(e.request).then(function(response) {
-                    cache.put(e.request.url, response.clone());
+                    //cache.put(e.request.url, response.clone());
                     return response;
                 });
             })
@@ -80,7 +80,8 @@ self.addEventListener('fetch', function(e) {
         console.dir(e.request);
         e.respondWith(
             caches.match(e.request).then(function(response) {
-                console.log("[Service Worker] fetch result from cache: " + JSON.stringify(response));
+                console.log("[Service Worker] fetch result from cache: ");
+                console.dir(response);
                 return response || fetch(e.request);
             })
         );

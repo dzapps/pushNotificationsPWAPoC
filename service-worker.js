@@ -51,6 +51,57 @@ self.addEventListener('activate', function(e) {
     return self.clients.claim();
 });
 
+self.addEventListener('fetch', function(e) {
+    console.log('[Service Worker] Fetch', e.request.url);
+    var dataUrl = 'localhost:8000';
+
+    if (e.request.url.indexOf(dataUrl) > -1) {
+        /*
+         * When the request URL contains dataUrl, the app is asking for fresh
+         * weather data. In this case, the service worker always goes to the
+         * network and then caches the response. This is called the "Cache then
+         * network" strategy:
+         * https://jakearchibald.com/2014/offline-cookbook/#cache-then-network
+         */
+        e.respondWith(
+            caches.open(dataCacheName).then(function(cache) {
+                return fetch(e.request).then(function(response) {
+                    //cache.put(e.request.url, response.clone());
+                    return response;
+                });
+            })
+        );
+    } else {
+        /*
+         * The app is asking for app shell files. In this scenario the app uses the
+         * "Cache, falling back to the network" offline strategy:
+         * https://jakearchibald.com/2014/offline-cookbook/#cache-falling-back-to-network
+         */
+        console.log(e.request.url);
+        console.dir(e.request);
+        e.respondWith(
+            caches.match(e.request).then(function(response) {
+
+
+                if (response) {
+                    console.log("[Service Worker] fetch result from cache: ");
+                    console.dir(response);
+                    return response;
+                } else {
+                    console.log("[Service Worker] Doing fresh fetch...: ");
+                    var res = fetch(e.request);
+                    res.then(resp => {
+                        console.log("[Service Worker] fresh fetch result: ");
+                        console.dir(resp);
+                        return resp;
+                    });
+
+                }
+                //return response || fetch(e.request);
+            })
+        );
+    }
+});
 
 /********************** PUSH NOTIFICATIONS *********************************** */
 self.addEventListener('push', function(event) {

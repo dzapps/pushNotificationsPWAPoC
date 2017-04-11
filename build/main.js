@@ -47733,6 +47733,7 @@ var GoogleMaps = (function () {
         this.connectivityService = connectivityService;
         this.mapInitialised = false;
         this.markers = [];
+        this.apiKey = 'AIzaSyDKDB9tWkTmAoJVHwZJ_8o3VqKFV9e9PX8';
     }
     GoogleMaps.prototype.init = function (mapElement, pleaseConnect, defaultLocation) {
         console.log('init');

@@ -8,6 +8,7 @@ var filesToCache = [
     '/pushNotificationsPWAPoC/build/main.js',
     '/pushNotificationsPWAPoC/manifest.json',
     '/pushNotificationsPWAPoC/assets/icon/favicon.ico',
+    '/pushNotificationsPWAPoC/assets/fonts/ionicons.ttf?v=3.0.0-alpha.3',
     'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700'
 ];
 

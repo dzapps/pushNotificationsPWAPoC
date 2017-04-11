@@ -47494,7 +47494,7 @@ var MapPage = (function () {
     }
     MapPage.prototype.updateMap = function () {
         var _this = this;
-        //this.loading.nativeElement.style.display = "block";
+        this.loading.nativeElement.style.display = "none";
         return new Promise(function (resolve, reject) {
             _this.platform.ready().then(function () {
                 var defaultLatLng = { lat: 40.4477894, lng: -3.6564599 };

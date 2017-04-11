@@ -1,5 +1,5 @@
-var dataCacheName = 'garagesData-v1';
-var cacheName = 'garagesPWA-final-1';
+var dataCacheName = 'garagesData-v2';
+var cacheName = 'garagesPWA-final-2';
 var filesToCache = [
     '/pushNotificationsPWAPoC/',
     '/pushNotificationsPWAPoC/index.html',

@@ -5,7 +5,10 @@ var filesToCache = [
     '/pushNotificationsPWAPoC/index.html',
     '/pushNotificationsPWAPoC/build/main.css',
     '/pushNotificationsPWAPoC/build/polyfills.js',
-    '/pushNotificationsPWAPoC/build/main.js'
+    '/pushNotificationsPWAPoC/build/main.js',
+    '/pushNotificationsPWAPoC/manifest.json',
+    '/pushNotificationsPWAPoC/assets/icon/favicon.ico',
+    'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700'
 ];
 
 self.addEventListener('install', function(e) {

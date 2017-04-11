@@ -47494,11 +47494,11 @@ var MapPage = (function () {
     }
     MapPage.prototype.updateMap = function () {
         var _this = this;
-        this.loading.nativeElement.style.display = "block";
+        //this.loading.nativeElement.style.display = "block";
         return new Promise(function (resolve, reject) {
             _this.platform.ready().then(function () {
                 var defaultLatLng = { lat: 40.4477894, lng: -3.6564599 };
-                var mapLoaded = _this.maps.init(_this.mapElement.nativeElement, _this.pleaseConnect.nativeElement, defaultLatLng);
+                var mapLoaded = _this.maps.init(_this.mapElement.nativeElement, _this.pleaseConnect.nativeElement, _this.loading.nativeElement, defaultLatLng);
                 //let locationsLoaded = this.locations.load();
                 mapLoaded.then(function (position) {
                     if (position) {
@@ -47506,8 +47506,8 @@ var MapPage = (function () {
                             //console.log('result ' + result);
                             //let locations = result[1];
                             for (var _i = 0, locations_1 = locations; _i < locations_1.length; _i++) {
-                                var location_1 = locations_1[_i];
-                                _this.maps.addMarkerPanel(location_1.latitude, location_1.longitude, location_1);
+                                var location = locations_1[_i];
+                                _this.maps.addMarkerPanel(location.latitude, location.longitude, location);
                             }
                             _this.loading.nativeElement.style.display = "none";
                         }).catch(function (err) { return alert('Error: ' + err); });
@@ -47540,31 +47540,32 @@ var MapPage = (function () {
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('map'), 
-        __metadata('design:type', __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */])
+        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */]) === 'function' && _a) || Object)
     ], MapPage.prototype, "mapElement", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('pleaseConnect'), 
-        __metadata('design:type', __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */])
+        __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */]) === 'function' && _b) || Object)
     ], MapPage.prototype, "pleaseConnect", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('loading'), 
-        __metadata('design:type', __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */])
+        __metadata('design:type', (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */]) === 'function' && _c) || Object)
     ], MapPage.prototype, "loading", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('notificationButton'), 
-        __metadata('design:type', __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */])
+        __metadata('design:type', (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */]) === 'function' && _d) || Object)
     ], MapPage.prototype, "notificationButton", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('notificationIcon'), 
-        __metadata('design:type', __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */])
+        __metadata('design:type', (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */]) === 'function' && _e) || Object)
     ], MapPage.prototype, "notificationIcon", void 0);
     MapPage = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Component */])({
             selector: 'page-map',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/map/map.html"*/'<ion-header>\n    <ion-navbar color="axaBlue">\n        <ion-title>\n            Garages\n        </ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n    <div #pleaseConnect id="please-connect">\n        <p>Please connect to the Internet...</p>\n    </div>\n\n    <div #loading id="loading">\n        <p>Loading data...</p>\n    </div>\n\n\n    <div #map id="map"></div>\n\n    <!--ion-fab bottom right #fab>\n        <button #notificationButton id="notificationButton" ion-fab (click)="toggleNotifications()">\n          <ion-icon #notificationIcon id="notificationIcon" name="notifications" *ngIf="isPushEnabled()"></ion-icon>\n          <ion-icon #notificationIcon id="notificationIcon" name="notifications-off" *ngIf="!isPushEnabled() || !isPushAllowed()"></ion-icon>\n        </button>\n    </ion-fab-->\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/map/map.html"*/
         }), 
-        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Platform */], __WEBPACK_IMPORTED_MODULE_1__providers_locations__["a" /* Locations */], __WEBPACK_IMPORTED_MODULE_4__providers_web_push_notifications__["a" /* WebPush */]])
+        __metadata('design:paramtypes', [(typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* NavController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* NavController */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__providers_google_maps__["a" /* GoogleMaps */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__providers_google_maps__["a" /* GoogleMaps */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Platform */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Platform */]) === 'function' && _h) || Object, (typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1__providers_locations__["a" /* Locations */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__providers_locations__["a" /* Locations */]) === 'function' && _j) || Object, (typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_4__providers_web_push_notifications__["a" /* WebPush */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__providers_web_push_notifications__["a" /* WebPush */]) === 'function' && _k) || Object])
     ], MapPage);
     return MapPage;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 }());
 //# sourceMappingURL=map.js.map
 
@@ -47735,10 +47736,11 @@ var GoogleMaps = (function () {
         this.markers = [];
         this.apiKey = 'AIzaSyDKDB9tWkTmAoJVHwZJ_8o3VqKFV9e9PX8';
     }
-    GoogleMaps.prototype.init = function (mapElement, pleaseConnect, defaultLocation) {
+    GoogleMaps.prototype.init = function (mapElement, pleaseConnect, loading, defaultLocation) {
         console.log('init');
         this.mapElement = mapElement;
         this.pleaseConnect = pleaseConnect;
+        this.loading = loading;
         this.defaultLocation = defaultLocation;
         return this.loadGoogleMaps();
     };
@@ -47829,10 +47831,16 @@ var GoogleMaps = (function () {
         if (this.pleaseConnect) {
             this.pleaseConnect.style.display = "block";
         }
+        if (this.loading) {
+            this.loading.style.display = "none";
+        }
     };
     GoogleMaps.prototype.enableMap = function () {
         if (this.pleaseConnect) {
             this.pleaseConnect.style.display = "none";
+        }
+        if (this.loading) {
+            this.loading.style.display = "block";
         }
     };
     GoogleMaps.prototype.addConnectivityListeners = function () {
@@ -47886,9 +47894,10 @@ var GoogleMaps = (function () {
     };
     GoogleMaps = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
-        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1__connectivity__["a" /* Connectivity */]])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__connectivity__["a" /* Connectivity */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__connectivity__["a" /* Connectivity */]) === 'function' && _a) || Object])
     ], GoogleMaps);
     return GoogleMaps;
+    var _a;
 }());
 //# sourceMappingURL=google-maps.js.map
 
@@ -93338,5 +93347,3 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dyna
 /***/ })
 /******/ ]);
 //# sourceMappingURL=main.js.map
-
-(function(w){var i=w.Ionic=w.Ionic||{};i.version='^2.0.0-rc.3';i.angular='2.1.1';i.ionicNative='^2.2.3';})(window);

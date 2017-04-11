@@ -47944,7 +47944,7 @@ var PushService = (function () {
             'Content-Type': 'application/json'
         });
         this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* RequestOptions */]({ headers: headers });
-        this.url = 'http://' + singleton.nodeServerHost + '/api/subscriptions';
+        this.url = singleton.nodeServerHost + '/api/subscriptions';
     }
     PushService.prototype.getSubscriptions = function () {
         var url = "" + this.url;
@@ -48019,7 +48019,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var SingletonService = (function () {
     function SingletonService() {
-        this.nodeServerHost = "192.168.1.38:8000";
+        this.nodeServerHost = "https://pushnotificationspwapoc.herokuapp.com";
     }
     SingletonService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 

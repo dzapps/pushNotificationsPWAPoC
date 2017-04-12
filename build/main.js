@@ -32136,6 +32136,8 @@ var PushService = (function () {
     };
     PushService.prototype.handleError = function (error) {
         var errorMsg;
+        console.log('error1' + error);
+        console.dir(error);
         if (error instanceof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Response */]) {
             var body = error.json() || '';
             var err = body.error || JSON.stringify(body);
@@ -32144,14 +32146,15 @@ var PushService = (function () {
         else {
             errorMsg = error.message ? error.message : error.toString();
         }
-        console.log(errorMsg);
+        console.log('error' + errorMsg);
         return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(errorMsg);
     };
     PushService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
-        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */], __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */]])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */]) === 'function' && _b) || Object])
     ], PushService);
     return PushService;
+    var _a, _b;
 }());
 //# sourceMappingURL=push.service.js.map
 
@@ -93470,5 +93473,3 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dyna
 /***/ })
 /******/ ]);
 //# sourceMappingURL=main.js.map
-
-(function(w){var i=w.Ionic=w.Ionic||{};i.version='^2.0.0-rc.3';i.angular='2.1.1';i.ionicNative='^2.2.3';})(window);

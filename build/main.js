@@ -47863,9 +47863,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var SubscriptionsPage = (function () {
-    function SubscriptionsPage(navCtrl, pushService) {
+    function SubscriptionsPage(navCtrl, pushService, toastCtrl) {
         this.navCtrl = navCtrl;
         this.pushService = pushService;
+        this.toastCtrl = toastCtrl;
         //this.loadSubscriptions();
     }
     SubscriptionsPage.prototype.ionViewDidLoad = function () {
@@ -47887,14 +47888,21 @@ var SubscriptionsPage = (function () {
         this.pushService.sendPush([subs.userId], 'Hi, ' + subs.userId + '!')
             .subscribe(function (rs) { return console.log(rs); }, function (er) { return console.log(er); }, function () { return console.log('ok'); });
     };
+    SubscriptionsPage.prototype.presentToast = function (msg) {
+        var toast = this.toastCtrl.create({
+            message: msg,
+            duration: 3000
+        });
+        toast.present();
+    };
     SubscriptionsPage = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Component */])({
             selector: 'page-subscriptions',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/subscriptions/subscriptions.html"*/'<ion-header>\n\n    <ion-navbar color="axaBlue">\n        <ion-title>Subscriptions</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n    <ion-list no-lines>\n        <!--ion-item *ngFor="let subs of subscriptions">\n            <ion-avatar item-left>\n                <ion-icon color="primary" name="contact"></ion-icon>\n            </ion-avatar>\n            <h2>{{subs.userId}}</h2>\n            <p>{{subs.token.endpoint}}</p>\n        </ion-item-->\n        <ion-item-sliding *ngFor="let subs of subscriptions">\n\n            <ion-item>\n                <ion-avatar item-left>\n                    <ion-icon color="primary" name="contact"></ion-icon>\n                </ion-avatar>\n                <h2>{{subs.userId}}</h2>\n                <p>{{subs.token.endpoint}}</p>\n            </ion-item>\n\n            <ion-item-options>\n                <button ion-button icon-only (click)="sendPush(subs)" color="light">\n                    <ion-icon name="send"></ion-icon>\n                </button>\n\n            </ion-item-options>\n\n        </ion-item-sliding>\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/subscriptions/subscriptions.html"*/
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_push_service__["a" /* PushService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__providers_push_service__["a" /* PushService */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_push_service__["a" /* PushService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__providers_push_service__["a" /* PushService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ToastController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ToastController */]) === 'function' && _c) || Object])
     ], SubscriptionsPage);
     return SubscriptionsPage;
-    var _a, _b;
+    var _a, _b, _c;
 }());
 //# sourceMappingURL=subscriptions.js.map
 

@@ -47885,8 +47885,9 @@ var SubscriptionsPage = (function () {
         this.loadSubscriptions();
     };
     SubscriptionsPage.prototype.sendPush = function (subs) {
+        var _this = this;
         this.pushService.sendPush([subs.userId], 'Hi, ' + subs.userId + '!')
-            .subscribe(function (rs) { return console.log(rs); }, function (er) { return console.log(er); }, function () { return console.log('ok'); });
+            .subscribe(function (rs) { return _this.presentToast(JSON.stringify(rs)); }, function (er) { return console.log(er); }, function () { return console.log('ok'); });
     };
     SubscriptionsPage.prototype.presentToast = function (msg) {
         var toast = this.toastCtrl.create({

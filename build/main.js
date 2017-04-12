@@ -32106,7 +32106,10 @@ var PushService = (function () {
         console.log('getSubscriptions(): ' + url);
         return this.http.get(url)
             .map(function (r) { return r.json(); })
-            .catch(this.handleError);
+            .catch(function (er) {
+            console.log(er);
+            return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].create();
+        });
     };
     /*getInventario(id: string): Observable<Inventario> {
         let url = `${this.url}/${id}`;

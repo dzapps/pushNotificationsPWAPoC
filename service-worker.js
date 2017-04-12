@@ -52,7 +52,7 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(event) {
-    console.log('[Service Worker] Fetch', e.request.url);
+    console.log('[Service Worker] Fetch', event.request.url);
     event.respondWith(
         fetch(event.request).catch(function() {
             return caches.match(event.request);

@@ -32102,10 +32102,10 @@ var PushService = (function () {
             'Content-Type': 'application/json'
         });
         this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* RequestOptions */]({ headers: headers });
-        this.url = singleton.nodeServerHost + '/api/subscriptions';
+        this.url = singleton.nodeServerHost + '/api';
     }
     PushService.prototype.getSubscriptions = function () {
-        var url = "" + this.url;
+        var url = this.url + "/subscriptions";
         console.log('getSubscriptions(): ' + url);
         return this.http.get(url)
             .map(function (r) { return r.json(); })
@@ -32118,7 +32118,7 @@ var PushService = (function () {
                         .catch(this.handleError);
     }*/
     PushService.prototype.addSubscription = function (inventario) {
-        var url = "" + this.url;
+        var url = this.url + "/subscriptions";
         var iJson = JSON.stringify(inventario);
         return this.http.post(url, iJson, this.options)
             .map(function (response) { return response.json(); })
@@ -32132,10 +32132,17 @@ var PushService = (function () {
                         .catch(this.handleError);
     }*/
     PushService.prototype.delSubscription = function (id) {
-        var url = this.url + "/" + id;
+        var url = this.url + "/subscriptions/" + id;
         return this.http.delete(url, this.options)
             .map(function (r) { return r.json(); })
             .catch(function (err) { return err.json(); });
+    };
+    PushService.prototype.sendPush = function (userIds, msg) {
+        var url = this.url + "/push";
+        var iJson = JSON.stringify({ userIds: userIds, data: msg });
+        return this.http.post(url, iJson, this.options)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
     };
     PushService.prototype.handleError = function (error) {
         var errorMsg;
@@ -47876,13 +47883,18 @@ var SubscriptionsPage = (function () {
     SubscriptionsPage.prototype.ionViewWillEnter = function () {
         this.loadSubscriptions();
     };
+    SubscriptionsPage.prototype.sendPush = function (subs) {
+        this.pushService.sendPush([subs.userId], 'Hi, ' + subs.userId + '!')
+            .subscribe(function (rs) { return console.log(rs); }, function (er) { return console.log(er); }, function () { return console.log('ok'); });
+    };
     SubscriptionsPage = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Component */])({
-            selector: 'page-subscriptions',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/subscriptions/subscriptions.html"*/'<ion-header>\n\n    <ion-navbar color="axaBlue">\n        <ion-title>Subscriptions</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n    <ion-list no-lines>\n        <!--ion-item *ngFor="let subs of subscriptions">\n            <ion-avatar item-left>\n                <ion-icon color="primary" name="contact"></ion-icon>\n            </ion-avatar>\n            <h2>{{subs.userId}}</h2>\n            <p>{{subs.token.endpoint}}</p>\n        </ion-item-->\n        <ion-item-sliding *ngFor="let subs of subscriptions">\n\n            <ion-item>\n                <ion-avatar item-left>\n                    <ion-icon color="primary" name="contact"></ion-icon>\n                </ion-avatar>\n                <h2>{{subs.userId}}</h2>\n                <p>{{subs.token.endpoint}}</p>\n            </ion-item>\n\n            <ion-item-options>\n                <button ion-button icon-only (click)="editNote(note)" light>\n                    <ion-icon name="send"></ion-icon>\n                </button>\n                <button ion-button icon-only (click)="deleteNote(note)" danger>\n                    <ion-icon name="trash"></ion-icon>\n                </button>\n            </ion-item-options>\n\n        </ion-item-sliding>\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/subscriptions/subscriptions.html"*/
+            selector: 'page-subscriptions',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/subscriptions/subscriptions.html"*/'<ion-header>\n\n    <ion-navbar color="axaBlue">\n        <ion-title>Subscriptions</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n    <ion-list no-lines>\n        <!--ion-item *ngFor="let subs of subscriptions">\n            <ion-avatar item-left>\n                <ion-icon color="primary" name="contact"></ion-icon>\n            </ion-avatar>\n            <h2>{{subs.userId}}</h2>\n            <p>{{subs.token.endpoint}}</p>\n        </ion-item-->\n        <ion-item-sliding *ngFor="let subs of subscriptions">\n\n            <ion-item>\n                <ion-avatar item-left>\n                    <ion-icon color="primary" name="contact"></ion-icon>\n                </ion-avatar>\n                <h2>{{subs.userId}}</h2>\n                <p>{{subs.token.endpoint}}</p>\n            </ion-item>\n\n            <ion-item-options>\n                <button ion-button icon-only (click)="sendPush(subs)" color="light">\n                    <ion-icon name="send"></ion-icon>\n                </button>\n\n            </ion-item-options>\n\n        </ion-item-sliding>\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/subscriptions/subscriptions.html"*/
         }), 
-        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_push_service__["a" /* PushService */]])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_push_service__["a" /* PushService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__providers_push_service__["a" /* PushService */]) === 'function' && _b) || Object])
     ], SubscriptionsPage);
     return SubscriptionsPage;
+    var _a, _b;
 }());
 //# sourceMappingURL=subscriptions.js.map
 

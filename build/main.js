@@ -20723,7 +20723,7 @@ var WebPush = (function () {
             });
         });
     };
-    WebPush.prototype.subscribeUser = function (webPush) {
+    WebPush.prototype.subscribeUser = function (webPush, userId) {
         var _this = this;
         return new Promise(function (resolve, reject) {
             var applicationServerKey = _this.urlB64ToUint8Array(_this.applicationServerPublicKey);
@@ -20737,7 +20737,7 @@ var WebPush = (function () {
                 console.dir(webPush);
                 //this.isSubscribed = true;
                 localStorage.setItem("subscription", JSON.stringify(subscription));
-                webPush.updateSubscriptionOnServer(subscription);
+                webPush.updateSubscriptionOnServer(subscription, userId);
                 resolve(subscription);
                 //updateBtn();
             })
@@ -20748,7 +20748,7 @@ var WebPush = (function () {
             });
         });
     };
-    WebPush.prototype.unsubscribeUser = function (webPush) {
+    WebPush.prototype.unsubscribeUser = function (webPush, userId) {
         var _this = this;
         return new Promise(function (resolve, reject) {
             _this.swRegistration.pushManager.getSubscription()
@@ -20763,7 +20763,7 @@ var WebPush = (function () {
             })
                 .then(function () {
                 localStorage.removeItem("subscription");
-                webPush.updateSubscriptionOnServer(null);
+                webPush.updateSubscriptionOnServer(null, userId);
                 console.log('User is unsubscribed.');
                 //this.isSubscribed = false;
                 resolve(true);
@@ -20771,11 +20771,11 @@ var WebPush = (function () {
             });
         });
     };
-    WebPush.prototype.updateSubscriptionOnServer = function (subscription) {
+    WebPush.prototype.updateSubscriptionOnServer = function (subscription, userId) {
         // TODO: Send subscription to application server
         if (subscription) {
             //subscriptionJson.textContent = JSON.stringify(subscription);
-            this.pushService.addSubscription({ "token": subscription, "userId": "edu", "id": "" })
+            this.pushService.addSubscription({ "token": subscription, "userId": userId, "id": "" })
                 .subscribe(function (rs) { return console.log(rs); }, function (er) { return console.log(er); }, function () { return console.log('ok'); });
         }
         else {
@@ -47506,8 +47506,8 @@ var MapPage = (function () {
                             //console.log('result ' + result);
                             //let locations = result[1];
                             for (var _i = 0, locations_1 = locations; _i < locations_1.length; _i++) {
-                                var location = locations_1[_i];
-                                _this.maps.addMarkerPanel(location.latitude, location.longitude, location);
+                                var location_1 = locations_1[_i];
+                                _this.maps.addMarkerPanel(location_1.latitude, location_1.longitude, location_1);
                             }
                             _this.loading.nativeElement.style.display = "none";
                         }).catch(function (err) { return alert('Error: ' + err); });
@@ -47540,32 +47540,31 @@ var MapPage = (function () {
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('map'), 
-        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */]) === 'function' && _a) || Object)
+        __metadata('design:type', __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */])
     ], MapPage.prototype, "mapElement", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('pleaseConnect'), 
-        __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */]) === 'function' && _b) || Object)
+        __metadata('design:type', __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */])
     ], MapPage.prototype, "pleaseConnect", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('loading'), 
-        __metadata('design:type', (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */]) === 'function' && _c) || Object)
+        __metadata('design:type', __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */])
     ], MapPage.prototype, "loading", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('notificationButton'), 
-        __metadata('design:type', (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */]) === 'function' && _d) || Object)
+        __metadata('design:type', __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */])
     ], MapPage.prototype, "notificationButton", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('notificationIcon'), 
-        __metadata('design:type', (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */]) === 'function' && _e) || Object)
+        __metadata('design:type', __WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* ElementRef */])
     ], MapPage.prototype, "notificationIcon", void 0);
     MapPage = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Component */])({
             selector: 'page-map',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/map/map.html"*/'<ion-header>\n    <ion-navbar color="axaBlue">\n        <ion-title>\n            Garages\n        </ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n    <div #pleaseConnect id="please-connect">\n        <p>Please connect to the Internet...</p>\n    </div>\n\n    <div #loading id="loading">\n        <p>Loading data...</p>\n    </div>\n\n\n    <div #map id="map"></div>\n\n    <!--ion-fab bottom right #fab>\n        <button #notificationButton id="notificationButton" ion-fab (click)="toggleNotifications()">\n          <ion-icon #notificationIcon id="notificationIcon" name="notifications" *ngIf="isPushEnabled()"></ion-icon>\n          <ion-icon #notificationIcon id="notificationIcon" name="notifications-off" *ngIf="!isPushEnabled() || !isPushAllowed()"></ion-icon>\n        </button>\n    </ion-fab-->\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/map/map.html"*/
         }), 
-        __metadata('design:paramtypes', [(typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* NavController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* NavController */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__providers_google_maps__["a" /* GoogleMaps */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__providers_google_maps__["a" /* GoogleMaps */]) === 'function' && _g) || Object, (typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Platform */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Platform */]) === 'function' && _h) || Object, (typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1__providers_locations__["a" /* Locations */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__providers_locations__["a" /* Locations */]) === 'function' && _j) || Object, (typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_4__providers_web_push_notifications__["a" /* WebPush */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__providers_web_push_notifications__["a" /* WebPush */]) === 'function' && _k) || Object])
+        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* Platform */], __WEBPACK_IMPORTED_MODULE_1__providers_locations__["a" /* Locations */], __WEBPACK_IMPORTED_MODULE_4__providers_web_push_notifications__["a" /* WebPush */]])
     ], MapPage);
     return MapPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 }());
 //# sourceMappingURL=map.js.map
 
@@ -47595,6 +47594,7 @@ var PushPage = (function () {
         this.navCtrl = navCtrl;
         this.webPush = webPush;
         this.subscriptionToken = "";
+        this.username = "";
         console.log("constructor isSubscribed: " + webPush.isSubscribed);
         /*webPush.initialize().then(rs =>  {
           this.enabled = rs;
@@ -47605,45 +47605,47 @@ var PushPage = (function () {
         });*/
         this.enabled = webPush.isSubscribed;
     }
-    PushPage.prototype.togglePushStatus = function () {
-        var _this = this;
+    /*togglePushStatus() {
+  
         this.log("enabled: " + this.enabled);
         this.log("isSubscribed: " + this.webPush.isSubscribed);
-        if (this.webPush.pushAllowed) {
-            if (this.webPush.isSubscribed) {
-                this.webPush.unsubscribeUser(this.webPush)
-                    .then(function (rs) {
-                    _this.webPush.isSubscribed = false;
-                    _this.subscriptionToken = "";
-                    _this.log('unsubscribeUser callback ' + rs);
-                    //this.enabled = false;
-                }).catch(function (err) {
-                    alert(err);
-                    //this.enabled = true;
+  
+        if(this.webPush.pushAllowed) {
+          if(this.webPush.isSubscribed) {
+  
+            this.webPush.unsubscribeUser(this.webPush)
+                .then(rs => {
+                  this.webPush.isSubscribed = false;
+                  this.subscriptionToken = "";
+                  this.log('unsubscribeUser callback ' + rs);
+                  //this.enabled = false;
+            }).catch(err => {
+                  alert(err);
+                  //this.enabled = true;
                 });
-            }
-            else {
-                this.webPush.subscribeUser(this.webPush)
-                    .then(function (subscription) {
-                    console.log(JSON.stringify(subscription));
-                    _this.webPush.isSubscribed = true;
-                    _this.subscriptionToken = localStorage.getItem("subscription");
-                    _this.log('subscribeUser callback ' + subscription);
-                    //this.enabled = true;
-                }).catch(function (err) {
-                    alert(err);
-                    //this.enabled = false;
+          } else {
+            this.webPush.subscribeUser(this.webPush)
+                .then(subscription => {
+                  console.log(JSON.stringify(subscription));
+                  this.webPush.isSubscribed = true;
+                  this.subscriptionToken = localStorage.getItem("subscription");
+                  this.log('subscribeUser callback ' + subscription);
+                  //this.enabled = true;
+                }).catch(err => {
+                  alert(err);
+                  //this.enabled = false;
                 });
-            }
+          }
+  
+        } else {
+          //this.notificationButton.nativeElement.style.color = "red";
+          alert('Push Is Not Supported');
+          this.enabled = false;
         }
-        else {
-            //this.notificationButton.nativeElement.style.color = "red";
-            alert('Push Is Not Supported');
-            this.enabled = false;
-        }
-    };
+  
+    }*/
     PushPage.prototype.log = function (msg) {
-        var prefix = '[togglePushStatus()] ';
+        var prefix = '[onSave()] ';
         console.log(prefix + msg);
     };
     PushPage.prototype.isPushAllowed = function () {
@@ -47652,9 +47654,57 @@ var PushPage = (function () {
     PushPage.prototype.ionViewDidLoad = function () {
         console.log('Hello PushPage Page');
     };
+    PushPage.prototype.ionViewWillEnter = function () {
+        this.username = localStorage.getItem('userId');
+    };
+    PushPage.prototype.onSave = function () {
+        var _this = this;
+        if (!this.username || this.username === "") {
+            alert('Missing UserName');
+            return;
+        }
+        else {
+            localStorage.setItem('userId', this.username);
+            if (this.webPush.pushAllowed) {
+                if (!this.enabled) {
+                    this.webPush.unsubscribeUser(this.webPush, this.username)
+                        .then(function (rs) {
+                        _this.webPush.isSubscribed = false;
+                        _this.subscriptionToken = "";
+                        _this.log('unsubscribeUser callback ' + rs);
+                        //this.enabled = false;
+                    }).catch(function (err) {
+                        alert(err);
+                        //this.enabled = true;
+                    });
+                }
+                else {
+                    this.webPush.subscribeUser(this.webPush, this.username)
+                        .then(function (subscription) {
+                        console.log(JSON.stringify(subscription));
+                        _this.webPush.isSubscribed = true;
+                        _this.subscriptionToken = localStorage.getItem("subscription");
+                        _this.log('subscribeUser callback ' + subscription);
+                        //this.enabled = true;
+                    }).catch(function (err) {
+                        alert(err);
+                        //this.enabled = false;
+                    });
+                }
+            }
+            else {
+                //this.notificationButton.nativeElement.style.color = "red";
+                alert('Push Is Not Supported');
+                this.enabled = false;
+            }
+        }
+    };
+    PushPage.prototype.isFormValid = function () {
+        return this.isPushAllowed() && (this.username && this.username != "");
+    };
     PushPage = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Component */])({
-            selector: 'page-push',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/push/push.html"*/'<ion-header>\n\n    <ion-navbar color="axaBlue">\n        <ion-title>Web Push</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n    <ion-card>\n        <ion-card-header>\n            Push Configuration\n        </ion-card-header>\n        <ion-card-content>\n            <ion-item>\n                <ion-label>Enable Web Push</ion-label>\n                <ion-toggle [(ngModel)]="enabled" (ngModelChange)="togglePushStatus()" *ngIf="isPushAllowed()"></ion-toggle>\n                <ion-toggle checked="false" disabled *ngIf="!isPushAllowed()"></ion-toggle>\n            </ion-item>\n            <ion-item *ngIf="!isPushAllowed()" text-wrap>\n                <ion-label color="danger">Your device does not support using web-push technology</ion-label>\n            </ion-item>\n            <ion-item text-wrap>\n                <p>{{ subscriptionToken }}</p>\n            </ion-item>\n        </ion-card-content>\n    </ion-card>\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/push/push.html"*/
+            selector: 'page-push',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/push/push.html"*/'<ion-header>\n\n    <ion-navbar color="axaBlue">\n        <ion-title>Web Push</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n    <ion-card>\n        <ion-card-header>\n            Push Configuration\n        </ion-card-header>\n        <ion-card-content>\n            <ion-item>\n                <ion-label>Enable Web Push</ion-label>\n                <ion-toggle [(ngModel)]="enabled" *ngIf="isPushAllowed()"></ion-toggle>\n                <ion-toggle checked="false" disabled *ngIf="!isPushAllowed()"></ion-toggle>\n            </ion-item>\n            <ion-item *ngIf="!isPushAllowed()" text-wrap>\n                <ion-label color="danger">Your device does not support using web-push technology</ion-label>\n            </ion-item>\n            <ion-item>\n                <ion-label stacked>Username</ion-label>\n                <ion-input [(ngModel)]="username" type="text"></ion-input>\n            </ion-item>\n            <!--ion-item text-wrap>\n                <p>{{ subscriptionToken }}</p>\n            </ion-item-->\n            <ion-row no-padding>\n                <ion-col>\n                    <button [disabled]="!isFormValid()" ion-button full (click)="onSave()" icon-left>\n                  <ion-icon name="cloud-upload"></ion-icon>\n                  Save\n                </button>\n                </ion-col>\n            </ion-row>\n        </ion-card-content>\n    </ion-card>\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/push/push.html"*/
         }), 
         __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_web_push_notifications__["a" /* WebPush */]])
     ], PushPage);
@@ -47894,10 +47944,9 @@ var GoogleMaps = (function () {
     };
     GoogleMaps = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__connectivity__["a" /* Connectivity */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__connectivity__["a" /* Connectivity */]) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1__connectivity__["a" /* Connectivity */]])
     ], GoogleMaps);
     return GoogleMaps;
-    var _a;
 }());
 //# sourceMappingURL=google-maps.js.map
 
@@ -47993,10 +48042,9 @@ var PushService = (function () {
     };
     PushService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */], __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */]])
     ], PushService);
     return PushService;
-    var _a, _b;
 }());
 //# sourceMappingURL=push.service.js.map
 

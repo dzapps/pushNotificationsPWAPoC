@@ -9493,6 +9493,7 @@ var AppPortal;
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_0__module__["c"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives__ = __webpack_require__(336);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__directives__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_1__directives__["c"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__gestures_drag_gesture__ = __webpack_require__(199);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__gestures_gesture__ = __webpack_require__(337);
@@ -47590,9 +47591,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var PushPage = (function () {
-    function PushPage(navCtrl, webPush) {
+    function PushPage(navCtrl, webPush, toastCtrl) {
         this.navCtrl = navCtrl;
         this.webPush = webPush;
+        this.toastCtrl = toastCtrl;
         this.segment = "disabled";
         this.subscriptionToken = "";
         this.username = "";
@@ -47675,9 +47677,10 @@ var PushPage = (function () {
                         _this.webPush.isSubscribed = false;
                         _this.subscriptionToken = "";
                         _this.log('unsubscribeUser callback ' + rs);
+                        _this.presentToast('Successfully Unsubscribed!');
                         //this.enabled = false;
                     }).catch(function (err) {
-                        alert(err);
+                        _this.presentToast(err);
                         //this.enabled = true;
                     });
                 }
@@ -47688,9 +47691,10 @@ var PushPage = (function () {
                         _this.webPush.isSubscribed = true;
                         _this.subscriptionToken = localStorage.getItem("subscription");
                         _this.log('subscribeUser callback ' + subscription);
+                        _this.presentToast('Successfully Subscribed!');
                         //this.enabled = true;
                     }).catch(function (err) {
-                        alert(err);
+                        _this.presentToast(err);
                         //this.enabled = false;
                     });
                 }
@@ -47705,14 +47709,21 @@ var PushPage = (function () {
     PushPage.prototype.isFormValid = function () {
         return this.isPushAllowed() && (this.username && this.username != "");
     };
+    PushPage.prototype.presentToast = function (msg) {
+        var toast = this.toastCtrl.create({
+            message: msg,
+            duration: 3000
+        });
+        toast.present();
+    };
     PushPage = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Component */])({
-            selector: 'page-push',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/push/push.html"*/'<ion-header>\n\n    <ion-navbar color="axaBlue">\n        <ion-title>Web Push</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n    <ion-card>\n        <ion-card-header>\n            Push Configuration\n        </ion-card-header>\n        <ion-card-content>\n            <!--ion-item>\n                <ion-label color="dark" stacked>Enable Web Push</ion-label>\n                <ion-toggle color="secondary" [(ngModel)]="enabled" *ngIf="isPushAllowed()"></ion-toggle>\n                <ion-toggle checked="false" disabled *ngIf="!isPushAllowed()"></ion-toggle>\n\n            </ion-item-->\n            <ion-label color="dark" stacked>Enable Web Push</ion-label>\n            <ion-item>\n                <ion-segment [disabled]="!isPushAllowed()" [(ngModel)]="segment">\n                    <ion-segment-button value="enabled">\n                        Enabled\n                    </ion-segment-button>\n                    <ion-segment-button value="disabled">\n                        Disabled\n                    </ion-segment-button>\n                </ion-segment>\n            </ion-item>\n            <ion-item *ngIf="!isPushAllowed()" text-wrap>\n                <ion-label color="danger">Your device does not support using web-push technology</ion-label>\n            </ion-item>\n            <ion-label color="dark" stacked>Username</ion-label>\n            <ion-item>\n                <ion-input [(ngModel)]="username" type="text"></ion-input>\n            </ion-item>\n            <!--ion-item text-wrap>\n                <p>{{ subscriptionToken }}</p>\n            </ion-item-->\n            <ion-row no-padding>\n                <ion-col>\n                    <button color="secondary" [disabled]="!isFormValid()" ion-button full (click)="onSave()" icon-left>\n                  <ion-icon name="cloud-upload"></ion-icon>\n                  Save\n                </button>\n                </ion-col>\n            </ion-row>\n        </ion-card-content>\n    </ion-card>\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/push/push.html"*/
+            selector: 'page-push',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/push/push.html"*/'<ion-header>\n\n    <ion-navbar color="axaBlue">\n        <ion-title>Web Push</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n    <ion-card>\n        <ion-card-header>\n            Push Configuration\n        </ion-card-header>\n        <ion-card-content>\n            <!--ion-item>\n                <ion-label color="dark" stacked>Enable Web Push</ion-label>\n                <ion-toggle color="secondary" [(ngModel)]="enabled" *ngIf="isPushAllowed()"></ion-toggle>\n                <ion-toggle checked="false" disabled *ngIf="!isPushAllowed()"></ion-toggle>\n\n            </ion-item-->\n            <ion-label color="dark" stacked>Enable Web Push</ion-label>\n            <ion-item>\n                <ion-segment [disabled]="!isPushAllowed()" [(ngModel)]="segment">\n                    <ion-segment-button value="enabled">\n                        Enabled\n                    </ion-segment-button>\n                    <ion-segment-button value="disabled">\n                        Disabled\n                    </ion-segment-button>\n                </ion-segment>\n            </ion-item>\n            <ion-item *ngIf="!isPushAllowed()" text-wrap>\n                <ion-label color="danger">Your device does not support using web-push technology</ion-label>\n            </ion-item>\n            <ion-label color="dark" stacked>Username</ion-label>\n            <ion-item>\n                <ion-input [disabled]="!isPushAllowed()" [(ngModel)]="username" type="text"></ion-input>\n            </ion-item>\n            <!--ion-item text-wrap>\n                <p>{{ subscriptionToken }}</p>\n            </ion-item-->\n            <ion-row no-padding>\n                <ion-col>\n                    <button color="secondary" [disabled]="!isFormValid()" ion-button full (click)="onSave()" icon-left>\n                  <ion-icon name="cloud-upload"></ion-icon>\n                  Save\n                </button>\n                </ion-col>\n            </ion-row>\n        </ion-card-content>\n    </ion-card>\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/push/push.html"*/
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_web_push_notifications__["a" /* WebPush */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__providers_web_push_notifications__["a" /* WebPush */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_web_push_notifications__["a" /* WebPush */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__providers_web_push_notifications__["a" /* WebPush */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ToastController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ToastController */]) === 'function' && _c) || Object])
     ], PushPage);
     return PushPage;
-    var _a, _b;
+    var _a, _b, _c;
 }());
 //# sourceMappingURL=push.js.map
 
@@ -54491,7 +54502,7 @@ var QUEUE_CHANGE_DETECTION = 0;
 /* unused harmony reexport isActivatable */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__components_toast_toast__ = __webpack_require__(329);
 /* unused harmony reexport Toast */
-/* unused harmony reexport ToastController */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_70__components_toast_toast__["a"]; });
 /* unused harmony reexport Toggle */
 /* unused harmony reexport Toolbar */
 /* unused harmony reexport ToolbarBase */

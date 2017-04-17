@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "build/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 606);
+/******/ 	return __webpack_require__(__webpack_require__.s = 609);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3124,7 +3124,7 @@ var CLICK_BLOCK_BUFFER_IN_MILLIS = 64;
 "use strict";
 
 var root_1 = __webpack_require__(53);
-var toSubscriber_1 = __webpack_require__(604);
+var toSubscriber_1 = __webpack_require__(607);
 var observable_1 = __webpack_require__(453);
 /**
  * A representation of any set of values over any amount of time. This the most basic building block
@@ -7187,7 +7187,7 @@ var NG_VALUE_ACCESSOR = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* O
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(596);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(599);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facade_lang__ = __webpack_require__(22);
@@ -18840,7 +18840,7 @@ var SELECT_DIRECTIVES = [SelectMultipleControlValueAccessor, NgSelectMultipleOpt
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(592);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(594);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_shared__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_async__ = __webpack_require__(59);
@@ -20782,7 +20782,7 @@ var WebPush = (function () {
         else {
             //subscriptionDetails.classList.add('is-invisible');
             console.log('no subscription');
-            this.pushService.delSubscription("edu")
+            this.pushService.delSubscription(userId)
                 .subscribe(function (rs) { return console.log(rs); }, function (er) { return console.log(er); }, function () { return console.log('ok'); });
         }
     };
@@ -22826,7 +22826,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Observable_1 = __webpack_require__(11);
 var Subscriber_1 = __webpack_require__(68);
 var Subscription_1 = __webpack_require__(202);
-var ObjectUnsubscribedError_1 = __webpack_require__(599);
+var ObjectUnsubscribedError_1 = __webpack_require__(602);
 var SubjectSubscription_1 = __webpack_require__(588);
 var rxSubscriber_1 = __webpack_require__(203);
 /**
@@ -32068,11 +32068,11 @@ var Locations = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__singleton__ = __webpack_require__(293);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(452);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_first__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_first__ = __webpack_require__(591);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_first___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_first__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_catch__ = __webpack_require__(589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_catch__ = __webpack_require__(590);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_observable_throw__ = __webpack_require__(607);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_observable_throw__ = __webpack_require__(589);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_observable_throw__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PushService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -32161,10 +32161,9 @@ var PushService = (function () {
     };
     PushService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */], __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */]])
     ], PushService);
     return PushService;
-    var _a, _b;
 }());
 //# sourceMappingURL=push.service.js.map
 
@@ -34909,11 +34908,11 @@ var SlideEdgeGesture = (function (_super) {
 "use strict";
 
 var isArray_1 = __webpack_require__(455);
-var isObject_1 = __webpack_require__(601);
+var isObject_1 = __webpack_require__(604);
 var isFunction_1 = __webpack_require__(456);
-var tryCatch_1 = __webpack_require__(605);
+var tryCatch_1 = __webpack_require__(608);
 var errorObject_1 = __webpack_require__(454);
-var UnsubscriptionError_1 = __webpack_require__(600);
+var UnsubscriptionError_1 = __webpack_require__(603);
 /**
  * Represents a disposable resource, such as the execution of an Observable. A
  * Subscription has one important method, `unsubscribe`, that takes no argument
@@ -47887,7 +47886,7 @@ var SubscriptionsPage = (function () {
     SubscriptionsPage.prototype.sendPush = function (subs) {
         var _this = this;
         this.pushService.sendPush([subs.userId], 'Hi, ' + subs.userId + '!')
-            .subscribe(function (rs) { return _this.presentToast(JSON.stringify(rs)); }, function (er) { return console.log(er); }, function () { return console.log('ok'); });
+            .subscribe(function (rs) { return _this.presentToast(JSON.stringify(rs)); }, function (er) { return console.log(er); }, function () { return _this.presentToast('ok'); });
     };
     SubscriptionsPage.prototype.presentToast = function (msg) {
         var toast = this.toastCtrl.create({
@@ -47900,10 +47899,9 @@ var SubscriptionsPage = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Component */])({
             selector: 'page-subscriptions',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/subscriptions/subscriptions.html"*/'<ion-header>\n\n    <ion-navbar color="axaBlue">\n        <ion-title>Subscriptions</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n    <ion-list no-lines>\n        <!--ion-item *ngFor="let subs of subscriptions">\n            <ion-avatar item-left>\n                <ion-icon color="primary" name="contact"></ion-icon>\n            </ion-avatar>\n            <h2>{{subs.userId}}</h2>\n            <p>{{subs.token.endpoint}}</p>\n        </ion-item-->\n        <ion-item-sliding *ngFor="let subs of subscriptions">\n\n            <ion-item>\n                <ion-avatar item-left>\n                    <ion-icon color="primary" name="contact"></ion-icon>\n                </ion-avatar>\n                <h2>{{subs.userId}}</h2>\n                <p>{{subs.token.endpoint}}</p>\n            </ion-item>\n\n            <ion-item-options>\n                <button ion-button icon-only (click)="sendPush(subs)" color="light">\n                    <ion-icon name="send"></ion-icon>\n                </button>\n\n            </ion-item-options>\n\n        </ion-item-sliding>\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/subscriptions/subscriptions.html"*/
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_push_service__["a" /* PushService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__providers_push_service__["a" /* PushService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ToastController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ToastController */]) === 'function' && _c) || Object])
+        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_push_service__["a" /* PushService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ToastController */]])
     ], SubscriptionsPage);
     return SubscriptionsPage;
-    var _a, _b, _c;
 }());
 //# sourceMappingURL=subscriptions.js.map
 
@@ -71985,7 +71983,7 @@ var Zip = (function () {
 "use strict";
 
 var Observable_1 = __webpack_require__(11);
-var map_1 = __webpack_require__(595);
+var map_1 = __webpack_require__(598);
 Observable_1.Observable.prototype.map = map_1.map;
 //# sourceMappingURL=map.js.map
 
@@ -92686,10 +92684,9 @@ exports.SubjectSubscription = SubjectSubscription;
 "use strict";
 
 var Observable_1 = __webpack_require__(11);
-var catch_1 = __webpack_require__(593);
-Observable_1.Observable.prototype.catch = catch_1._catch;
-Observable_1.Observable.prototype._catch = catch_1._catch;
-//# sourceMappingURL=catch.js.map
+var throw_1 = __webpack_require__(595);
+Observable_1.Observable.throw = throw_1._throw;
+//# sourceMappingURL=throw.js.map
 
 /***/ }),
 /* 590 */
@@ -92698,12 +92695,112 @@ Observable_1.Observable.prototype._catch = catch_1._catch;
 "use strict";
 
 var Observable_1 = __webpack_require__(11);
-var first_1 = __webpack_require__(594);
+var catch_1 = __webpack_require__(596);
+Observable_1.Observable.prototype.catch = catch_1._catch;
+Observable_1.Observable.prototype._catch = catch_1._catch;
+//# sourceMappingURL=catch.js.map
+
+/***/ }),
+/* 591 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(11);
+var first_1 = __webpack_require__(597);
 Observable_1.Observable.prototype.first = first_1.first;
 //# sourceMappingURL=first.js.map
 
 /***/ }),
-/* 591 */
+/* 592 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Observable_1 = __webpack_require__(11);
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @extends {Ignored}
+ * @hide true
+ */
+var ErrorObservable = (function (_super) {
+    __extends(ErrorObservable, _super);
+    function ErrorObservable(error, scheduler) {
+        _super.call(this);
+        this.error = error;
+        this.scheduler = scheduler;
+    }
+    /**
+     * Creates an Observable that emits no items to the Observer and immediately
+     * emits an error notification.
+     *
+     * <span class="informal">Just emits 'error', and nothing else.
+     * </span>
+     *
+     * <img src="./img/throw.png" width="100%">
+     *
+     * This static operator is useful for creating a simple Observable that only
+     * emits the error notification. It can be used for composing with other
+     * Observables, such as in a {@link mergeMap}.
+     *
+     * @example <caption>Emit the number 7, then emit an error.</caption>
+     * var result = Rx.Observable.throw(new Error('oops!')).startWith(7);
+     * result.subscribe(x => console.log(x), e => console.error(e));
+     *
+     * @example <caption>Map and flattens numbers to the sequence 'a', 'b', 'c', but throw an error for 13</caption>
+     * var interval = Rx.Observable.interval(1000);
+     * var result = interval.mergeMap(x =>
+     *   x === 13 ?
+     *     Rx.Observable.throw('Thirteens are bad') :
+     *     Rx.Observable.of('a', 'b', 'c')
+     * );
+     * result.subscribe(x => console.log(x), e => console.error(e));
+     *
+     * @see {@link create}
+     * @see {@link empty}
+     * @see {@link never}
+     * @see {@link of}
+     *
+     * @param {any} error The particular Error to pass to the error notification.
+     * @param {Scheduler} [scheduler] A {@link Scheduler} to use for scheduling
+     * the emission of the error notification.
+     * @return {Observable} An error Observable: emits only the error notification
+     * using the given error argument.
+     * @static true
+     * @name throw
+     * @owner Observable
+     */
+    ErrorObservable.create = function (error, scheduler) {
+        return new ErrorObservable(error, scheduler);
+    };
+    ErrorObservable.dispatch = function (arg) {
+        var error = arg.error, subscriber = arg.subscriber;
+        subscriber.error(error);
+    };
+    ErrorObservable.prototype._subscribe = function (subscriber) {
+        var error = this.error;
+        var scheduler = this.scheduler;
+        if (scheduler) {
+            return scheduler.schedule(ErrorObservable.dispatch, 0, {
+                error: error, subscriber: subscriber
+            });
+        }
+        else {
+            subscriber.error(error);
+        }
+    };
+    return ErrorObservable;
+}(Observable_1.Observable));
+exports.ErrorObservable = ErrorObservable;
+//# sourceMappingURL=ErrorObservable.js.map
+
+/***/ }),
+/* 593 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -92830,17 +92927,27 @@ function dispatchError(arg) {
 //# sourceMappingURL=PromiseObservable.js.map
 
 /***/ }),
-/* 592 */
+/* 594 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var PromiseObservable_1 = __webpack_require__(591);
+var PromiseObservable_1 = __webpack_require__(593);
 exports.fromPromise = PromiseObservable_1.PromiseObservable.create;
 //# sourceMappingURL=fromPromise.js.map
 
 /***/ }),
-/* 593 */
+/* 595 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var ErrorObservable_1 = __webpack_require__(592);
+exports._throw = ErrorObservable_1.ErrorObservable.create;
+//# sourceMappingURL=throw.js.map
+
+/***/ }),
+/* 596 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -92851,7 +92958,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var OuterSubscriber_1 = __webpack_require__(587);
-var subscribeToResult_1 = __webpack_require__(603);
+var subscribeToResult_1 = __webpack_require__(606);
 /**
  * Catches errors on the observable to be handled by returning a new observable or throwing an error.
  * @param {function} selector a function that takes as arguments `err`, which is the error, and `caught`, which
@@ -92911,7 +93018,7 @@ var CatchSubscriber = (function (_super) {
 //# sourceMappingURL=catch.js.map
 
 /***/ }),
-/* 594 */
+/* 597 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -92922,7 +93029,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(68);
-var EmptyError_1 = __webpack_require__(598);
+var EmptyError_1 = __webpack_require__(601);
 /**
  * Emits only the first value (or the first value that meets some condition)
  * emitted by the source Observable.
@@ -93065,7 +93172,7 @@ var FirstSubscriber = (function (_super) {
 //# sourceMappingURL=first.js.map
 
 /***/ }),
-/* 595 */
+/* 598 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93158,7 +93265,7 @@ var MapSubscriber = (function (_super) {
 //# sourceMappingURL=map.js.map
 
 /***/ }),
-/* 596 */
+/* 599 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93192,7 +93299,7 @@ exports.toPromise = toPromise;
 //# sourceMappingURL=toPromise.js.map
 
 /***/ }),
-/* 597 */
+/* 600 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93230,7 +93337,7 @@ else {
 //# sourceMappingURL=iterator.js.map
 
 /***/ }),
-/* 598 */
+/* 601 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93264,7 +93371,7 @@ exports.EmptyError = EmptyError;
 //# sourceMappingURL=EmptyError.js.map
 
 /***/ }),
-/* 599 */
+/* 602 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93297,7 +93404,7 @@ exports.ObjectUnsubscribedError = ObjectUnsubscribedError;
 //# sourceMappingURL=ObjectUnsubscribedError.js.map
 
 /***/ }),
-/* 600 */
+/* 603 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93328,7 +93435,7 @@ exports.UnsubscriptionError = UnsubscriptionError;
 //# sourceMappingURL=UnsubscriptionError.js.map
 
 /***/ }),
-/* 601 */
+/* 604 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93340,7 +93447,7 @@ exports.isObject = isObject;
 //# sourceMappingURL=isObject.js.map
 
 /***/ }),
-/* 602 */
+/* 605 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93352,16 +93459,16 @@ exports.isPromise = isPromise;
 //# sourceMappingURL=isPromise.js.map
 
 /***/ }),
-/* 603 */
+/* 606 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var root_1 = __webpack_require__(53);
 var isArray_1 = __webpack_require__(455);
-var isPromise_1 = __webpack_require__(602);
+var isPromise_1 = __webpack_require__(605);
 var Observable_1 = __webpack_require__(11);
-var iterator_1 = __webpack_require__(597);
+var iterator_1 = __webpack_require__(600);
 var InnerSubscriber_1 = __webpack_require__(585);
 var observable_1 = __webpack_require__(453);
 function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
@@ -93432,7 +93539,7 @@ exports.subscribeToResult = subscribeToResult;
 //# sourceMappingURL=subscribeToResult.js.map
 
 /***/ }),
-/* 604 */
+/* 607 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93457,7 +93564,7 @@ exports.toSubscriber = toSubscriber;
 //# sourceMappingURL=toSubscriber.js.map
 
 /***/ }),
-/* 605 */
+/* 608 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93482,7 +93589,7 @@ exports.tryCatch = tryCatch;
 //# sourceMappingURL=tryCatch.js.map
 
 /***/ }),
-/* 606 */
+/* 609 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93494,115 +93601,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
 
-/***/ }),
-/* 607 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(11);
-var throw_1 = __webpack_require__(609);
-Observable_1.Observable.throw = throw_1._throw;
-//# sourceMappingURL=throw.js.map
-
-/***/ }),
-/* 608 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Observable_1 = __webpack_require__(11);
-/**
- * We need this JSDoc comment for affecting ESDoc.
- * @extends {Ignored}
- * @hide true
- */
-var ErrorObservable = (function (_super) {
-    __extends(ErrorObservable, _super);
-    function ErrorObservable(error, scheduler) {
-        _super.call(this);
-        this.error = error;
-        this.scheduler = scheduler;
-    }
-    /**
-     * Creates an Observable that emits no items to the Observer and immediately
-     * emits an error notification.
-     *
-     * <span class="informal">Just emits 'error', and nothing else.
-     * </span>
-     *
-     * <img src="./img/throw.png" width="100%">
-     *
-     * This static operator is useful for creating a simple Observable that only
-     * emits the error notification. It can be used for composing with other
-     * Observables, such as in a {@link mergeMap}.
-     *
-     * @example <caption>Emit the number 7, then emit an error.</caption>
-     * var result = Rx.Observable.throw(new Error('oops!')).startWith(7);
-     * result.subscribe(x => console.log(x), e => console.error(e));
-     *
-     * @example <caption>Map and flattens numbers to the sequence 'a', 'b', 'c', but throw an error for 13</caption>
-     * var interval = Rx.Observable.interval(1000);
-     * var result = interval.mergeMap(x =>
-     *   x === 13 ?
-     *     Rx.Observable.throw('Thirteens are bad') :
-     *     Rx.Observable.of('a', 'b', 'c')
-     * );
-     * result.subscribe(x => console.log(x), e => console.error(e));
-     *
-     * @see {@link create}
-     * @see {@link empty}
-     * @see {@link never}
-     * @see {@link of}
-     *
-     * @param {any} error The particular Error to pass to the error notification.
-     * @param {Scheduler} [scheduler] A {@link Scheduler} to use for scheduling
-     * the emission of the error notification.
-     * @return {Observable} An error Observable: emits only the error notification
-     * using the given error argument.
-     * @static true
-     * @name throw
-     * @owner Observable
-     */
-    ErrorObservable.create = function (error, scheduler) {
-        return new ErrorObservable(error, scheduler);
-    };
-    ErrorObservable.dispatch = function (arg) {
-        var error = arg.error, subscriber = arg.subscriber;
-        subscriber.error(error);
-    };
-    ErrorObservable.prototype._subscribe = function (subscriber) {
-        var error = this.error;
-        var scheduler = this.scheduler;
-        if (scheduler) {
-            return scheduler.schedule(ErrorObservable.dispatch, 0, {
-                error: error, subscriber: subscriber
-            });
-        }
-        else {
-            subscriber.error(error);
-        }
-    };
-    return ErrorObservable;
-}(Observable_1.Observable));
-exports.ErrorObservable = ErrorObservable;
-//# sourceMappingURL=ErrorObservable.js.map
-
-/***/ }),
-/* 609 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var ErrorObservable_1 = __webpack_require__(608);
-exports._throw = ErrorObservable_1.ErrorObservable.create;
-//# sourceMappingURL=throw.js.map
-
 /***/ })
 /******/ ]);
 //# sourceMappingURL=main.js.map
+
+(function(w){var i=w.Ionic=w.Ionic||{};i.version='^2.0.0-rc.3';i.angular='2.1.1';i.ionicNative='^2.2.3';})(window);

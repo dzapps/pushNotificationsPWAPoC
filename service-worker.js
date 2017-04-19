@@ -86,7 +86,8 @@ self.addEventListener('push', function(event) {
     var options = {
         body: str,
         icon: 'assets/icon/favicon.ico',
-        badge: 'assets/icon/favicon.ico'
+        badge: 'assets/icon/favicon.ico',
+        vibrate: [200, 100, 200, 100, 200, 100, 200]
     };
     
     if(isJson(str)) {

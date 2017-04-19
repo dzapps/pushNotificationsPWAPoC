@@ -94,6 +94,25 @@ self.addEventListener('notificationclick', function(event) {
       }  
       else if (event.action === 'reply') {  
         console.log(event.action);
+          
+          fetch('https://pushnotificationspwapoc.herokuapp.com/api/push', {  
+            method: 'post',  
+            headers: {  
+              "Content-type": "application/json; charset=UTF-8"  
+            },  
+            body: '{ "userIds": ["chrome curro edu"], data: "Hi Back!!!!" }'  
+          })
+          .then(json)  
+          .then(function (data) {  
+            console.log('Request succeeded with JSON response', data);  
+          })  
+          .catch(function (error) {  
+            console.log('Request failed', error);  
+          });
+          
+          
+          
+          
       }  
       else {  
         //event.waitUntil(

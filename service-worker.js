@@ -1,5 +1,5 @@
-var dataCacheName = 'garagesData-v2';
-var cacheName = 'garagesPWA-final-2';
+var dataCacheName = 'garagesData-v3';
+var cacheName = 'garagesPWA-final-3';
 var filesToCache = [
     '/pushNotificationsPWAPoC/',
     '/pushNotificationsPWAPoC/index.html',
@@ -8,6 +8,8 @@ var filesToCache = [
     '/pushNotificationsPWAPoC/build/main.js',
     '/pushNotificationsPWAPoC/manifest.json',
     '/pushNotificationsPWAPoC/assets/icon/favicon.ico',
+    '/pushNotificationsPWAPoC/assets/icon/icon_144.png',
+    '/pushNotificationsPWAPoC/assets/icon/icon_640.png',
     '/pushNotificationsPWAPoC/assets/fonts/ionicons.ttf?v=3.0.0-alpha.3',
     '/pushNotificationsPWAPoC/assets/fonts/ionicons.woff?v=3.0.0-alpha.3',
     '/pushNotificationsPWAPoC/assets/fonts/ionicons.woff2?v=3.0.0-alpha.3',

@@ -9,12 +9,5 @@
         "type": "image/png"
     }],
     "background_color": "#00005b",
-    "theme_color": "#00005b",
-    "prefer_related_applications": true,
-    "related_applications": [
-      {
-        "platform": "play",
-        "id": "com.axa.app.myaxa.es"
-      }
-    ]
+    "theme_color": "#00005b"
 }

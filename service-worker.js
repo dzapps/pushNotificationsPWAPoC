@@ -102,7 +102,7 @@ self.addEventListener('notificationclick', function(event) {
             },  
             body: '{ "userIds": ["chrome curro edu"], data: "Hi Back!!!!" }'  
           })
-          .then(json)  
+          //.then(json)  
           .then(function (data) {  
             console.log('Request succeeded with JSON response', data);  
           })  

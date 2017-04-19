@@ -2,7 +2,13 @@
     "name": "Garages",
     "short_name": "Garages",
     "start_url": "index.html",
-    "display": "standalone",
+    "display": "standalone
+    "related_applications": [
+      {
+      "platform": "play",
+      "id": "com.axa.app.myaxa.es"
+      }
+    ],
     "icons": [{
         "src": "assets/icon/icon_640.png",
         "sizes": "640x640",

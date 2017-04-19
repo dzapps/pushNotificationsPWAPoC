@@ -64,11 +64,50 @@ self.addEventListener('fetch', function(event) {
 });
 
 /********************** PUSH NOTIFICATIONS *********************************** */
+
+function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+
 self.addEventListener('push', function(event) {
     console.log('[Service Worker] Push Received.');
     console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+    
+    var str = event.data.text()
+    
+    var title = 'Garages';
+    var data;
+    var options = {
+        body: str,
+        icon: 'assets/icon/favicon.ico',
+        badge: 'assets/icon/favicon.ico'
+    };
+    
+    if(isJson(str)) {
+        var pushData = JSON.parse(str);
+        if(pushData.body) {
+            options.body = pushData.body;  
+            options.actions =  [
+                {action: 'reply', title: 'Reply to ' + pushData.data }
+            ] 
+        }
+        if(pushData.title) {
+            title = pushData.title;    
+        }
+         if(pushData.data) {
+            options.data = pushData.data;    
+        }        
+    } 
+    
+    
 
-    const title = 'Garages';
+    /*const title = 'Garages';
     const options = {
         body: event.data.text(),
         icon: 'assets/icon/favicon.ico',
@@ -77,7 +116,7 @@ self.addEventListener('push', function(event) {
             {action: 'dismiss', title: 'Dismiss'},  
             {action: 'reply', title: 'Reply'}
         ]  
-    };
+    };*/
 
     //event.waitUntil(
     self.registration.showNotification(title, options);
@@ -86,7 +125,8 @@ self.addEventListener('push', function(event) {
 
 self.addEventListener('notificationclick', function(event) {
     console.log('[Service Worker] Notification click Received.');
-
+    var senderId = event.notification.data;
+    
     event.notification.close();
     
     if (event.action === 'dismiss') {  
@@ -95,12 +135,18 @@ self.addEventListener('notificationclick', function(event) {
       else if (event.action === 'reply') {  
         console.log(event.action);
           
+          var body = '{ "userIds": ["chrome curro edu"], "data": "Hi Back!!!!" }';
+          if(senderId) {
+            body = '{ "userIds": ["' + senderId + '"], "data": "Hi Back!!!!" }';
+          }
+          
+          
           fetch('https://pushnotificationspwapoc.herokuapp.com/api/push', {  
             method: 'post',  
             headers: {  
               "Content-type": "application/json; charset=UTF-8"  
             },  
-            body: '{ "userIds": ["chrome curro edu"], "data": "Hi Back!!!!" }'  
+            body: body  
           })
           //.then(json)  
           .then(function (data) {  

@@ -74,8 +74,8 @@ self.addEventListener('push', function(event) {
         icon: 'assets/icon/favicon.ico',
         badge: 'assets/icon/favicon.ico',
         actions: [  
-            {action: 'like', title: '👍Like'},  
-            {action: 'reply', title: '⤻ Reply'}
+            {action: 'dismiss', title: 'Dismiss'},  
+            {action: 'reply', title: 'Reply'}
         ]  
     };
 
@@ -88,8 +88,18 @@ self.addEventListener('notificationclick', function(event) {
     console.log('[Service Worker] Notification click Received.');
 
     event.notification.close();
+    
+    if (event.action === 'dismiss') {  
+        console.log(event.action); 
+      }  
+      else if (event.action === 'reply') {  
+        console.log(event.action);
+      }  
+      else {  
+        //event.waitUntil(
+        clients.openWindow('https://txirinedu.github.io/pushNotificationsPWAPoC/');
+        //); 
+      } 
 
-    //event.waitUntil(
-    clients.openWindow('https://txirinedu.github.io/pushNotificationsPWAPoC/');
-    //);
+    
 });

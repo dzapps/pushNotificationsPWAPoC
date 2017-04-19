@@ -2,7 +2,7 @@
     "name": "Garages",
     "short_name": "Garages",
     "start_url": "index.html",
-    "display": "standalone
+    "display": "standalone,
     "related_applications": [
       {
       "platform": "play",

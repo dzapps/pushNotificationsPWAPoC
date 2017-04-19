@@ -72,7 +72,11 @@ self.addEventListener('push', function(event) {
     const options = {
         body: event.data.text(),
         icon: 'assets/icon/favicon.ico',
-        badge: 'assets/icon/favicon.ico'
+        badge: 'assets/icon/favicon.ico',
+        actions: [  
+            {action: 'like', title: '👍Like'},  
+            {action: 'reply', title: '⤻ Reply'}
+        ]  
     };
 
     //event.waitUntil(

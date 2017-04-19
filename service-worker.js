@@ -100,7 +100,7 @@ self.addEventListener('notificationclick', function(event) {
             headers: {  
               "Content-type": "application/json; charset=UTF-8"  
             },  
-            body: '{ "userIds": ["chrome curro edu"], data: "Hi Back!!!!" }'  
+            body: '{ "userIds": ["chrome curro edu"], "data": "Hi Back!!!!" }'  
           })
           //.then(json)  
           .then(function (data) {  

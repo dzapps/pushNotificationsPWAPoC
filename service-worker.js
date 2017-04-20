@@ -134,8 +134,10 @@ self.addEventListener('notificationclick', function(event) {
         console.log(event.action);
     } else if (event.action === 'reply') {
         console.log(event.action);
-        var userId = localStorage.getItem('userId');
-        var msg = userId ? 'Hi Back ' + userId + '!!!!!' : 'Hi Back!!!!';
+        //var userId = localStorage.getItem('userId');
+        //var msg = userId ? 'Hi Back ' + userId + '!!!!!' : 'Hi Back!!!!';
+
+        var msg = 'Hi Back!!!!';
 
         var body = '{ "userIds": ["chrome curro edu"], "data": "' + msg + '" }';
         if (senderId) {

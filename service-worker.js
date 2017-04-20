@@ -94,16 +94,19 @@ self.addEventListener('push', function(event) {
         var pushData = JSON.parse(str);
         if (pushData.body) {
             options.body = pushData.body;
-            options.actions = [
-                { action: 'reply', title: 'Reply to ' + pushData.data }
-            ]
+            if (pushData.data) {
+                options.actions = [
+                    { action: 'reply', title: 'Reply to ' + pushData.data }
+                ];
+                options.data = pushData.data;
+            }
         }
         if (pushData.title) {
             title = pushData.title;
         }
-        if (pushData.data) {
+        /*if (pushData.data) {
             options.data = pushData.data;
-        }
+        }*/
     }
 
 

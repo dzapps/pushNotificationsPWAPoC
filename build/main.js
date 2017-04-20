@@ -32137,9 +32137,11 @@ var PushService = (function () {
             .map(function (r) { return r.json(); })
             .catch(function (err) { return err.json(); });
     };
-    PushService.prototype.sendPush = function (userIds, msg) {
+    PushService.prototype.sendPush = function (userIds, msg, senderId) {
         var url = this.url + "/push";
-        var iJson = JSON.stringify({ userIds: userIds, data: msg });
+        var body = JSON.stringify({ body: msg, data: senderId });
+        console.log('body: ' + body);
+        var iJson = JSON.stringify({ userIds: userIds, data: body });
         return this.http.post(url, iJson, this.options)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -32161,9 +32163,10 @@ var PushService = (function () {
     };
     PushService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
-        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */], __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */]])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__singleton__["a" /* SingletonService */]) === 'function' && _b) || Object])
     ], PushService);
     return PushService;
+    var _a, _b;
 }());
 //# sourceMappingURL=push.service.js.map
 
@@ -47885,7 +47888,8 @@ var SubscriptionsPage = (function () {
     };
     SubscriptionsPage.prototype.sendPush = function (subs) {
         var _this = this;
-        this.pushService.sendPush([subs.userId], 'Hi, ' + subs.userId + '!')
+        var username = localStorage.getItem('userId');
+        this.pushService.sendPush([subs.userId], 'Hi, ' + subs.userId + '!', username)
             .subscribe(function (rs) {
             console.log(JSON.stringify(rs));
             _this.presentToast('Sent!');

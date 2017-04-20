@@ -78,9 +78,9 @@ function isJson(str) {
 self.addEventListener('push', function(event) {
     console.log('[Service Worker] Push Received.');
     console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
-    
+
     var str = event.data.text()
-    
+
     var title = 'Garages';
     var data;
     var options = {
@@ -89,34 +89,34 @@ self.addEventListener('push', function(event) {
         badge: 'assets/icon/favicon.ico',
         vibrate: [200, 100, 200, 100, 200, 100, 200]
     };
-    
-    if(isJson(str)) {
+
+    if (isJson(str)) {
         var pushData = JSON.parse(str);
-        if(pushData.body) {
-            options.body = pushData.body;  
-            options.actions =  [
-                {action: 'reply', title: 'Reply to ' + pushData.data }
-            ] 
+        if (pushData.body) {
+            options.body = pushData.body;
+            options.actions = [
+                { action: 'reply', title: 'Reply to ' + pushData.data }
+            ]
         }
-        if(pushData.title) {
-            title = pushData.title;    
+        if (pushData.title) {
+            title = pushData.title;
         }
-         if(pushData.data) {
-            options.data = pushData.data;    
-        }        
-    } 
-    
-    
+        if (pushData.data) {
+            options.data = pushData.data;
+        }
+    }
+
+
 
     /*const title = 'Garages';
     const options = {
         body: event.data.text(),
         icon: 'assets/icon/favicon.ico',
         badge: 'assets/icon/favicon.ico',
-        actions: [  
-            {action: 'dismiss', title: 'Dismiss'},  
+        actions: [
+            {action: 'dismiss', title: 'Dismiss'},
             {action: 'reply', title: 'Reply'}
-        ]  
+        ]
     };*/
 
     //event.waitUntil(
@@ -127,45 +127,45 @@ self.addEventListener('push', function(event) {
 self.addEventListener('notificationclick', function(event) {
     console.log('[Service Worker] Notification click Received.');
     var senderId = event.notification.data;
-    
+
     event.notification.close();
-    
-    if (event.action === 'dismiss') {  
-        console.log(event.action); 
-      }  
-      else if (event.action === 'reply') {  
+
+    if (event.action === 'dismiss') {
         console.log(event.action);
-          
-          var body = '{ "userIds": ["chrome curro edu"], "data": "Hi Back!!!!" }';
-          if(senderId) {
-            body = '{ "userIds": ["' + senderId + '"], "data": "Hi Back!!!!" }';
-          }
-          
-          
-          fetch('https://pushnotificationspwapoc.herokuapp.com/api/push', {  
-            method: 'post',  
-            headers: {  
-              "Content-type": "application/json; charset=UTF-8"  
-            },  
-            body: body  
-          })
-          //.then(json)  
-          .then(function (data) {  
-            console.log('Request succeeded with JSON response', data);  
-          })  
-          .catch(function (error) {  
-            console.log('Request failed', error);  
-          });
-          
-          
-          
-          
-      }  
-      else {  
+    } else if (event.action === 'reply') {
+        console.log(event.action);
+        var userId = localStorage.getItem('userId');
+        var msg = userId ? 'Hi Back ' + userId + '!!!!!' : 'Hi Back!!!!';
+
+        var body = '{ "userIds": ["chrome curro edu"], "data": "' + msg + '" }';
+        if (senderId) {
+            body = '{ "userIds": ["' + senderId + '"], "data": "' + msg + '" }';
+        }
+
+
+        fetch('https://pushnotificationspwapoc.herokuapp.com/api/push', {
+                method: 'post',
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                },
+                body: body
+            })
+            //.then(json)
+            .then(function(data) {
+                console.log('Request succeeded with JSON response', data);
+            })
+            .catch(function(error) {
+                console.log('Request failed', error);
+            });
+
+
+
+
+    } else {
         //event.waitUntil(
         clients.openWindow('https://txirinedu.github.io/pushNotificationsPWAPoC/');
-        //); 
-      } 
+        //);
+    }
 
-    
+
 });

@@ -57,7 +57,7 @@ self.addEventListener('fetch', function(event) {
                 console.log('[ServiceWorker] Fetched&Cached Data');
                 return response;
               });
-            })).catch(function() {
+            }).catch(function() {
                 console.log('[ServiceWorker] Cached Data');
                 return caches.match(event.request);
             })

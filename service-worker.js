@@ -47,13 +47,13 @@ self.addEventListener('fetch', function(event) {
     console.log('[Service Worker] Fetch', event.request.url);
    
     var dataUrl = 'assets/data/';
-    if (e.request.url.indexOf(dataUrl) > -1) {
+    if (event.request.url.indexOf(dataUrl) > -1) {
     // Put data handler code here
-        e.respondWith(
-          fetch(e.request)
+        event.respondWith(
+          fetch(event.request)
             .then(function(response) {
               return caches.open(dataCacheName).then(function(cache) {
-                cache.put(e.request, response.clone());
+                cache.put(event.request, response.clone());
                 console.log('[ServiceWorker] Fetched&Cached Data');
                 return response;
               });

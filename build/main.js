@@ -47563,17 +47563,32 @@ var ListPage = (function () {
     function ListPage(navCtrl, locations) {
         this.navCtrl = navCtrl;
         this.locations = locations;
+        if (this.locations.data) {
+            this.list = this.locations.data.slice(0, 10);
+        }
+        else {
+            this.list = new Array();
+        }
     }
     ListPage.prototype.ionViewDidLoad = function () {
         console.log('Hello ListPage Page');
     };
+    ListPage.prototype.ionViewWillEnter = function () {
+        if (this.locations.data) {
+            this.list = this.locations.data.slice(0, 10);
+        }
+        else {
+            this.list = new Array();
+        }
+    };
     ListPage = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Component */])({
-            selector: 'page-list',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/list/list.html"*/'<ion-header>\n\n    <ion-navbar color="axaBlue">\n        <ion-title>Lista</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n    <ion-list no-lines>\n        <ion-item *ngFor="let location of locations.data">\n            <ion-avatar item-left>\n                <ion-icon name="pin"></ion-icon>\n            </ion-avatar>\n            <h2>{{location.title}}</h2>\n            <p>{{location.distance}} Kms</p>\n        </ion-item>\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/list/list.html"*/
+            selector: 'page-list',template:/*ion-inline-start:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/list/list.html"*/'<ion-header>\n\n    <ion-navbar color="axaBlue">\n        <ion-title>Lista</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n    <ion-list no-lines>\n        <ion-item *ngFor="let location of list">\n            <ion-avatar item-left>\n                <ion-icon name="pin"></ion-icon>\n            </ion-avatar>\n            <h2>{{location.title}}</h2>\n            <p>{{location.distance}} Kms</p>\n        </ion-item>\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/edu/Developer/ionic/ionic2-nearby-master/src/pages/list/list.html"*/
         }), 
-        __metadata('design:paramtypes', [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_locations__["a" /* Locations */]])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_locations__["a" /* Locations */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__providers_locations__["a" /* Locations */]) === 'function' && _b) || Object])
     ], ListPage);
     return ListPage;
+    var _a, _b;
 }());
 //# sourceMappingURL=list.js.map
 

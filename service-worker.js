@@ -45,11 +45,30 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(event) {
     console.log('[Service Worker] Fetch', event.request.url);
-    event.respondWith(
-        fetch(event.request).catch(function() {
-            return caches.match(event.request);
-        })
-    );
+   
+    var dataUrl = 'assets/data/';
+    if (e.request.url.indexOf(dataUrl) > -1) {
+    // Put data handler code here
+        e.respondWith(
+          fetch(e.request)
+            .then(function(response) {
+              return caches.open(dataCacheName).then(function(cache) {
+                cache.put(e.request, response.clone());
+                console.log('[ServiceWorker] Fetched&Cached Data');
+                return response;
+              });
+            })).catch(function() {
+                console.log('[ServiceWorker] Cached Data');
+                return caches.match(event.request);
+            })
+        );
+    } else {
+        event.respondWith(
+            fetch(event.request).catch(function() {
+                return caches.match(event.request);
+            })
+        );
+    }
 
 });
 
